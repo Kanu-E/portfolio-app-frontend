@@ -7,7 +7,7 @@ import {fetchPortfolios} from '../actions/fetchPortfolios'
 class PortfolioContainer extends  Component{
 
     componentDidMount=()=> {
-
+        this.props.fetchPortfolios()
     }
     render() {
         return (

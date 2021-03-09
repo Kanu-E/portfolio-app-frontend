@@ -1,7 +1,12 @@
 
 const portfolioReducer = (state = {portfolios:[]}, action) => {
-    
-    return state 
+    // debugger;
+    switch(action.type){
+        case "GET_PORTFOLIOS":
+            return {portfolios: action.payload}
+        default:
+            return state
+    }
 }
 
 export default portfolioReducer 
