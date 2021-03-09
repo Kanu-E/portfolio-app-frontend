@@ -14,7 +14,7 @@ class PortfolioContainer extends  Component{
             <div>
                 Portfolios
                 <PortfolioInput/>
-                <Portfolios/>
+                <Portfolios portfolios={this.props.portfolios}/>
             </div>
         )
     }
