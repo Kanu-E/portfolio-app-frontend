@@ -10,7 +10,5 @@ export const addPortfolio = (data) =>{
         })
         .then(response => response.json())
         .then(portfolio => dispatch({type: 'ADD_PORTFOLIO', payload: portfolio}))        
-        
-   
     }
 }

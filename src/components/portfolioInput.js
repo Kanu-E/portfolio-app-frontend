@@ -13,6 +13,8 @@ class PortfolioInput extends Component{
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addPortfolio(this.state)
+        this.setState({name:"",
+         cash_balance:""})
     }
       
     render() {
