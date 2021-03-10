@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import {addPortfolio} from '../actions/addPortfolio'
 
 class PortfolioInput extends Component{
     state = {name:"", cash_balance:""}
@@ -6,6 +8,11 @@ class PortfolioInput extends Component{
         this.setState({
             [event.target.name] :event.target.value,
         })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.addPortfolio(this.state)
     }
       
     render() {
@@ -18,7 +25,7 @@ class PortfolioInput extends Component{
                     <br>
                     </br>
                     <label>Set Portfolio Opening Balance</label>
-                    <input onChange={this.handleChange}  type="text"  type="text" value={this.state.cash_balance} name="cash_balance"/>
+                    <input onChange={this.handleChange}  type="text" value={this.state.cash_balance} name="cash_balance"/>
                     <br>
                     </br>
                     <input type="submit"/> 
@@ -29,4 +36,4 @@ class PortfolioInput extends Component{
 
 }
 
-export default PortfolioInput
+export default connect(null, {addPortfolio})(PortfolioInput)

@@ -4,6 +4,8 @@ const portfolioReducer = (state = {portfolios:[]}, action) => {
     switch(action.type){
         case "GET_PORTFOLIOS":
             return {portfolios: action.payload}
+        case 'ADD_PORTFOLIO': 
+          return  {portfolios:state.portfolios.concat(action.payload)}
         default:
             return state
     }
