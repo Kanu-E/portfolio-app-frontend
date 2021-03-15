@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 import {addPortfolio} from '../actions/addPortfolio'
 
 class PortfolioInput extends Component{
-    state = {name:"", cash_balance:""}
+    state = {
+        name:"", 
+        cash_balance:""
+    }
     handleChange = (event) => {
         this.setState({
             [event.target.name] :event.target.value,

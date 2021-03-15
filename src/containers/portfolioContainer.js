@@ -4,7 +4,7 @@ import Portfolio   from '../components/showPortfolio'
 import PortfolioInput   from '../components/portfolioInput'
 import {connect} from 'react-redux'
 import {fetchPortfolios} from '../actions/fetchPortfolios'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 
 
 class PortfolioContainer extends  Component{
@@ -15,10 +15,11 @@ class PortfolioContainer extends  Component{
     render() {
         return (
             <div>
-                Portfolios
-                <Route path='/portfolios/new' component={PortfolioInput}/>
-                <Route exact path='/portfolios'  render={(routerprops) =><Portfolios {...routerprops} portfolios={this.props.portfolios}/>}/>
-                <Route path='/portfolios/:id'  render={(routerprops) =><Portfolio  {...routerprops} portfolios={this.props.portfolios}/>}/>
+                <Switch>
+                    <Route path='/portfolios/new' component={PortfolioInput}/>
+                    <Route path='/portfolios/:id'  render={(routerprops) =><Portfolio  {...routerprops} portfolios={this.props.portfolios}/>}/>
+                    <Route exact path='/portfolios'  render={(routerprops) =><Portfolios {...routerprops} portfolios={this.props.portfolios}/>}/>
+                </Switch>
 
                 {/* <PortfolioInput/> */}
                 
