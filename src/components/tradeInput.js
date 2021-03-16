@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
-
+import {addTrade} from '../actions/addTrade'
 
 class TradeInput  extends  Component{
     state = {
-        tradeType:"",
         quantity:""
     }
 
@@ -15,21 +13,22 @@ class TradeInput  extends  Component{
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        // console.log(this.state, this.props.portfolio.id, this.props.trade.stock_ticker)
+        this.props.addTrade(this.state, this.props.portfolio.id, this.props.trade)
+        this.setState({
+            quantity:""})
+    }
+
     render() {
         return (
             <div>
-                <form>
-                    <label>
-                        Open or Close
-                    </label>
-                    <select onChange={this.handleChange} type="text" value={this.state.name} name="tradeType" >
-                        <option>open</option>
-                        <option>close</option>
-                    </select>
+                <form onSubmit={this.handleSubmit}>                   
                     <label>
                         Quantity                
                     </label>
-                    <input type="text" onChange={this.handleChange} type="text" value={this.state.name} name="quantity"></input>
+                    <input type="text" onChange={this.handleChange} value={this.state.quantity} name="quantity"/>
                     <input type="submit"/> 
                 </form>
             </div>
@@ -38,4 +37,4 @@ class TradeInput  extends  Component{
 
 }
 
-export default connect(null) (TradeInput)
+export default connect(null, {addTrade}) (TradeInput)
