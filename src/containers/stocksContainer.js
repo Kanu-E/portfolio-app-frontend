@@ -1,39 +1,22 @@
 import React, {Component} from 'react'
-// import Stocks   from '../components/Stocks'
-// import Stock   from '../components/showStock'
-// import StockInput   from '../components/StockInput'
 import {connect} from 'react-redux'
-import {fetchStocks} from '../actions/fetchStocks'
 import {Route, Switch} from 'react-router-dom'
-
+import Stocks from '../components/stocks'
+import Stock   from '../components/showStocks'
 
 
 class StocksContainer extends  Component{
-    componentDidMount=()=> {
-        const finnhub = require('finnhub')
 
-        const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-        api_key.apiKey = 'c14s26n48v6st2757ktg'
-    
-        const finnhubClient = new finnhub.DefaultApi()
-    
-        finnhubClient.stockCandles("AAPL", "D", 1590988249, 1591852249, {}, (error, data, response) => {
-            console.log(data.c)
-        });
-    }
+
     render() {
         console.log(this.props.stocks)
         return (
             <div>
-                
                 <Switch>
-                    {/* <Route path='/Stocks/new' component={StockInput}/> */}
-                    {/* <Route path='/Stocks/:id'  render={(routerprops) =><Stock  {...routerprops} Stocks={this.props.Stocks}/>}/>
-                    <Route exact path='/Stocks'  render={(routerprops) =><Stocks {...routerprops} Stocks={this.props.Stocks}/>}/> */}
+                    {/* <Stock stocks={this.props.stocks}/> */}
+                <Route path='/stocks/:id'  render={(routerprops) =><Stock {...routerprops} stocks={this.props.stocks}/>}/>
+                <Route exact path='/stocks'  render={(routerprops)  => <Stocks {...routerprops} stocks={this.props.stocks} />} />  
                 </Switch>
-
-                {/* <StockInput/> */}
-                
             </div>
         )
     }
@@ -41,10 +24,10 @@ class StocksContainer extends  Component{
 
 const mapStateToProps = state =>{
     return{
-        stocks: state.stocks
+        stocks: [{ticker: "AMZN", id: 1, price:890}, {ticker:"AAPL", id:2, price:890}, {ticker:"TSLA", id:3, price:890}]
     }
 }
 
 
 
-export default connect (mapStateToProps, {fetchStocks})(StocksContainer)
+export default connect (mapStateToProps, null)(StocksContainer)

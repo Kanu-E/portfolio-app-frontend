@@ -5,13 +5,13 @@ import App from './App';
 import {createStore, applyMiddleware, compose} from 'redux'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import portfolioReducer from './reducers/portfolioReducer'
+import rootReducer from './reducers/portfolioReducer'
 import { BrowserRouter as Router} from 'react-router-dom';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let store = createStore(portfolioReducer, composeEnhancers(applyMiddleware(thunk)))
+let store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 
 ReactDOM.render(

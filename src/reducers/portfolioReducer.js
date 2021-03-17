@@ -1,24 +1,44 @@
+import { combineReducers } from "redux";
+ 
+const rootReducer = combineReducers({
+  portfolios: portfoliosReducer,
+  stocks: stocksReducer
+});
 
-const portfolioReducer = (state = {portfolios:[]}, action) => {
+export default rootReducer;
 
-    let portfolios = state.portfolios.filter(portfolio => portfolio.id !== action.payload.id)    ;
-    
+function portfoliosReducer(state =[], action) {
+    let portfolios;
     switch(action.type){
         case "GET_PORTFOLIOS":
-            return {portfolios: action.payload}
+            return state = action.payload
         case 'ADD_PORTFOLIO': 
-            return  {portfolios:state.portfolios.concat(action.payload)}
+            return  state.concat(action.payload)
         case 'EDIT_PORTFOLIO': 
-            return  {portfolios: portfolios.concat(action.payload)}
+            portfolios = state.filter(portfolio => portfolio.id !== action.payload.id)   
+            return  portfolios.concat(action.payload)
         case 'ADD_TRADE': 
-            return  {portfolios: portfolios.concat(action.payload)}
-        case 'DELETE_TRADE': 
-            return {portfolios: state.portfolios.filter(portfolio => portfolio.id !== action.payload)}
-        case "GET_STOCKS":
-            return {stocks: action.payload}
+            return  state.concat(action.payload)
+        case 'DELETE_PORTFOLIO': 
+            return state.filter(portfolio => portfolio.id !== action.payload)
         default:
             return state
     }
 }
 
-export default portfolioReducer 
+
+function stocksReducer(state =[], action) {
+    switch(action.type){
+        case "GET_STOCKS":
+            return state = action.payload
+        case 'ADD_GET_STOCK': 
+            return  state.concat(action.payload)
+        case 'EDIT_GET_STOCK': 
+            return  state.concat(action.payload)
+        default:
+            return state
+    }
+}
+
+
+
