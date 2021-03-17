@@ -32,7 +32,7 @@ const Portfolios  =(props) =>{
                 </tbody>
                 )}
             </table>
-            <p> <Link to={`./portfolios/new`}> Create a New  </Link> </p>
+            <p> <Link to={`./portfolios/new`}> Create a New Portfolio </Link> </p>
         </div>
     )
 }

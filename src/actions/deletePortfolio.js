@@ -5,6 +5,6 @@ export const deletePortfolio = (portfolioId) =>{
         fetch(`http://localhost:3000/api/v1/portfolios/${portfolioId}`,{
             method: 'DELETE',
         })
-        .then(response =>  dispatch({type: 'DELETE_TRADE', portfolioId: portfolioId}))        
+        .then(() =>  dispatch({type: 'DELETE_TRADE', payload: portfolioId}))        
     }
 }

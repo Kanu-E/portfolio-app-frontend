@@ -19,7 +19,6 @@ class Trades  extends  Component{
         
   
     const portfolio=this.props.portfolio
-    console.log(this.props.trades[0])
 
     return (
 

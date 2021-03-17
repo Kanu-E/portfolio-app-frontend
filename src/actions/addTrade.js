@@ -1,7 +1,6 @@
 export const addTrade = (quantity, portfolioId, trade) =>{
     // debugger
     return (dispatch)=>{
-        console.log(trade, portfolioId, )
         fetch(`http://localhost:3000/api/v1/portfolios/${portfolioId}/trades`,{
             headers: {
                 'Content-Type': 'application/json',
@@ -16,6 +15,11 @@ export const addTrade = (quantity, portfolioId, trade) =>{
             })
         })
         .then(response => response.json())
-        .then(portfolio => dispatch({type: 'ADD_TRADE', payload: portfolio}))        
+        .then(portfolio => {if (portfolio.error){
+            alert(portfolio.error)
+        }    else {
+            dispatch({type: 'ADD_TRADE', payload: portfolio})}
+
+        })             
     }
 }
