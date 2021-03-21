@@ -12,13 +12,14 @@ const Stocks  = (props) =>{
                     <tr>
                         <th>Stock Name</th>
                         <th>Price</th>
+                        <th>Shares Owned</th>
                         <th>Net Stock Value </th>
                     </tr>
                 </thead>          
                 <tbody  >
-                {props.stocks.map (stock=> 
-                    <StockRow key={stock.id} stock={stock}/>
-                )}
+                    {props.stocks.map (stock=> 
+                        <StockRow key={stock.id} stock={stock} portfolio={props.portfolio}/>
+                    )}
                 </tbody>               
             </table>        
         </div>

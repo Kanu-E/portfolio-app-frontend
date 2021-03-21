@@ -2,7 +2,8 @@ import { combineReducers } from "redux";
  
 const rootReducer = combineReducers({
   portfolios: portfoliosReducer,
-  stocks: stocksReducer
+  stocks: stocksReducer,
+  stockData: stockDataReducer
 });
 
 export default rootReducer;
@@ -29,12 +30,23 @@ function portfoliosReducer(state =[], action) {
 
 function stocksReducer(state =[], action) {
     switch(action.type){
-        case "GET_STOCKS":
+        case "GET_STOCK":
             return state = action.payload
         case 'ADD_GET_STOCK': 
             return  state.concat(action.payload)
         case 'EDIT_GET_STOCK': 
             return  state.concat(action.payload)
+        default:
+            return state
+    }
+}
+
+function stockDataReducer(state =[], action) {
+    // debugger
+    switch(action.type){       
+        case "GET_STOCKS_DATA":
+            // debugger
+            return state.concat(action.payload)
         default:
             return state
     }

@@ -13,7 +13,7 @@ class PortfolioContainer extends  Component{
         this.props.fetchPortfolios()
     }
     render() {
-        console.log(this.props.portfolios)
+        // console.log(this.props.portfolios)
         return (
             <div>
                 <Switch>

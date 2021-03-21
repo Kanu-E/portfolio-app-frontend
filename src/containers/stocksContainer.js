@@ -5,17 +5,18 @@ import Stocks from '../components/stocks'
 import Stock   from '../components/showStocks'
 
 
+
 class StocksContainer extends  Component{
 
 
     render() {
-        console.log(this.props.stocks)
+        // console.log(this.props.stocks)
         return (
             <div>
                 <Switch>
                     {/* <Stock stocks={this.props.stocks}/> */}
                 <Route path='/stocks/:id'  render={(routerprops) =><Stock {...routerprops} stocks={this.props.stocks}/>}/>
-                <Route exact path='/stocks'  render={(routerprops)  => <Stocks {...routerprops} stocks={this.props.stocks} />} />  
+                    <Stocks stocks={this.props.stocks} portfolio={this.props.portfolio}/>  
                 </Switch>
             </div>
         )
