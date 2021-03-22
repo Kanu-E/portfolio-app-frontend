@@ -1,6 +1,7 @@
 import React  from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import StockRow  from './stockRow'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Stocks  = (props) =>{
@@ -13,7 +14,7 @@ const Stocks  = (props) =>{
                         <th>Stock Name</th>
                         <th>Price</th>
                         <th>Shares Owned</th>
-                        <th>Net Stock Value </th>
+                        <th>Total Value </th>
                     </tr>
                 </thead>          
                 <tbody  >
