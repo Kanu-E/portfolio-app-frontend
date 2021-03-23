@@ -56,7 +56,7 @@ class Stock extends Component {
     }
 
     render() {
-        console.log(this.state)
+
         let stock = this.props.stocks.find(stock => stock.ticker === this.props.match.params.ticker)
         let portfolio = this.props.portfolios.find(portfolio => portfolio.name === this.props.match.params.portfolioName)
         let averagePrice;
@@ -73,6 +73,7 @@ class Stock extends Component {
         let CompanyName = this.state.overview.Name
         return(
             <div>
+                
                 <h2> {stock.ticker} </h2>
                 <h3>{CompanyName}</h3>
                 <Plot
@@ -82,10 +83,10 @@ class Stock extends Component {
                         y: this.state.yValues,
                         type: "scatter",
                         mode: "lines",
-                        line: {color: '#17BECF'}
+                        line: {color: 'green'}
                     },
                     ]}
-                    layout={{width: 750, height:450, title: 'A Fancy Plot'}}
+                    layout={{width: 680, height:400, title: this.props.match.params.ticker}}
                 />
                 <p>Buying Power for {stock.ticker} {cashBalance}</p>
                 <div>

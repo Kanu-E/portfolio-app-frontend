@@ -5,11 +5,20 @@
         currency: 'USD',
     }) 
 
+    export const portfolioPositions = (trades) => {
+        let tickers = []
+        let positions = []
+        trades.forEach(trade => tickers.push(trade.stock_ticker))
+        let newTickers = ([...new Set(tickers)])
+        newTickers.forEach(ticker => positions.push({ticker: ticker, price:  getAveragePrice(ticker, trades)}))
+        return positions
+    }
+
     export const findQuantity = (stockTicker, trades) => {
         let stocksTraded = trades.filter(trade => trade.stock_ticker === stockTicker)
         let buys = stocksTraded.filter(trade => trade.trade_type ===  'open') 
         let sales = stocksTraded.filter(trade => trade.trade_type === 'close')
-        console.log(buys)
+
             let buysQuantity = buys.reduce(function(a , b){ 
                 return a + b.quantity
             }       , 0)  
@@ -24,7 +33,6 @@
     export const getAveragePrice = (stockTicker, trades) => {
         let stocksTraded = trades.filter(trade => trade.stock_ticker === stockTicker)
         let buys = stocksTraded.filter(trade => trade.trade_type ===  'open') 
-        console.log(buys)
         let tradeCost = buys.reduce(function(a , b){ 
             return a + (b.quantity * b.average_price)
         }       , 0) 

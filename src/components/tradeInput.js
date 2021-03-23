@@ -18,7 +18,7 @@ class TradeInput  extends  Component{
         // console.log(this.state, this.props.portfolio.id, this.props.trade.stock_ticker)
         this.props.addTrade(this.state, this.props.portfolio.id, this.props.trade)
         this.setState({
-            quantity:""})
+        quantity:""})
     }
 
     render() {
@@ -34,7 +34,6 @@ class TradeInput  extends  Component{
             </div>
         )
     }
-
 }
 
 export default connect(null, {addTrade}) (TradeInput)

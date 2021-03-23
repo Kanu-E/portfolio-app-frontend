@@ -1,10 +1,17 @@
 import React  from 'react'
 // import {Link} from 'react-router-dom'
 import StockRow  from './stockRow'
+import {portfolioPositions} from './formatter'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Stocks  = (props) =>{
+
+    
+    // const 
+
+    let stocks = portfolioPositions(props.portfolio.trades)
+    console.log(stocks)
 
     return (       
         <div className="container">        
@@ -18,8 +25,8 @@ const Stocks  = (props) =>{
                     </tr>
                 </thead>          
                 <tbody  >
-                    {props.stocks.map (stock=> 
-                        <StockRow key={stock.id} stock={stock} portfolio={props.portfolio}/>
+                    {stocks.map (stock=> 
+                        <StockRow key={stock.ticker} stock={stock} portfolio={props.portfolio}/>
                     )}
                 </tbody>               
             </table>        

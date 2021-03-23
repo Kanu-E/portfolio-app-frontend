@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TradeInput from '../components/tradeInput'
+import {Link} from 'react-router-dom'
 
 // import Trade from './trade'
 
@@ -24,16 +25,11 @@ class Trades  extends  Component{
         <div>
             Trades
            {this.props.trades.map (trade=>
-           <div key={trade.id}> 
-           <div  onClick={this.handleClick} >
+           <div key={trade.id} onClick={this.handleClick}>    
              {trade.stock_ticker}  {trade.trade_type} {trade.quantity} {trade.average_price} 
               <br></br> 
-            {trade.created_at} 
+            {trade.created_at} <Link to={`./${portfolio.name}/trades/${trade.id}`}> View </Link> 
             <br></br> 
-            </div>
-               <div>
-               <TradeInput  portfolio={portfolio} trade={trade}/>
-               </div>             
             </div>)}
             
         </div>

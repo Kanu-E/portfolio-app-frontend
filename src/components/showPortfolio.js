@@ -19,14 +19,17 @@ const Portfolio = (props) =>{
         props.history.push('/Portfolios')  
     }
 
+    
+
     return(
         <div>
 
             {portfolio? <h2>Portfolio {portfolio.name} </h2>: console.log("....requesting")}
             {portfolio? <StocksContainer portfolio={portfolio}/> : console.log("....requesting")}
-            {portfolio? <TradesContainer portfolio={portfolio}/> : console.log("....requesting")}
             {portfolio? <PortfolioEdit portfolio={portfolio}/> : console.log("....requesting")}
             <button onClick={() => handleDelete(portfolio.id)}>Delete Portfolio</button>
+            {portfolio? <TradesContainer portfolio={portfolio}/> : console.log("....requesting")}
+
         </div>
     )
 }
