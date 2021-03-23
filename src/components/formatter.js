@@ -1,5 +1,3 @@
-
-
     export const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -10,7 +8,12 @@
         let positions = []
         trades.forEach(trade => tickers.push(trade.stock_ticker))
         let newTickers = ([...new Set(tickers)])
-        newTickers.forEach(ticker => positions.push({ticker: ticker, price:  getAveragePrice(ticker, trades)}))
+        newTickers.forEach(ticker => 
+            positions.push({
+                ticker: ticker, 
+                price:  getAveragePrice(ticker, trades),
+                quantity: findQuantity(ticker, trades)
+            }))
         return positions
     }
 
@@ -46,23 +49,7 @@
 
 
 
-    // const getBuys = (trades, type) =>{
-    //     trades.filter(trade => trade.trade_type === 'open')
-    // }
 
-    // export const fetchStockPrice = (ticker) => {       
-    //     let data = fetchStockData(ticker)
-    //     // console.log(data)
-    //     return 
-    // }
-
-
-    //  const fetchStockData = (ticker) => {
-    //      let data;
-    //     fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=c14s26n48v6st2757ktg`)
-    //     .then(response => response.json())
-    //     .then (data => {return data.c})        
-    // }
 
 
 

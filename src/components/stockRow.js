@@ -16,8 +16,8 @@ class StockRow extends Component {
      }
 
       componentDidMount() {
-        const thisBoundedIncrementer = this.getStockData.bind(this);
-        setInterval(thisBoundedIncrementer, 10000);
+        // const thisBoundedIncrementer = this.getStockData.bind(this);
+        // setInterval(thisBoundedIncrementer, 10000);
         // fetchStockPrice("AMZN")
       }
     

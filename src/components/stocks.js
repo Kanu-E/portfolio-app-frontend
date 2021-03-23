@@ -26,7 +26,8 @@ const Stocks  = (props) =>{
                 </thead>          
                 <tbody  >
                     {stocks.map (stock=> 
-                        <StockRow key={stock.ticker} stock={stock} portfolio={props.portfolio}/>
+                    
+                        stock.quantity > 0?<StockRow key={stock.ticker} stock={stock} portfolio={props.portfolio}/>: null
                     )}
                 </tbody>               
             </table>        
