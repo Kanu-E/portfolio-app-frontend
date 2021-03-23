@@ -25,7 +25,7 @@ const Portfolios  =(props) =>{
                 {props.portfolios.map (portfolio=>  
                 <tbody key={portfolio.id} >
                     <tr >     
-                        <td> <Link to={`./portfolios/${portfolio.id}`}> {portfolio.name} </Link> </td>
+                        <td> <Link to={`./portfolios/${portfolio.name}`}> {portfolio.name} </Link> </td>
                         <td> {formatter.format(portfolio.cash_balance)} </td>  
                         <td></td>     
                     </tr>  

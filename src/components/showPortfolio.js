@@ -6,9 +6,12 @@ import StocksContainer from '../containers/stocksContainer'
 import {connect} from 'react-redux'
 
 
+
 const Portfolio = (props) =>{
+
+    console.log(props.match.params)
    
-    let portfolio = props.portfolios.find(portfolio => portfolio.id == props.match.params.id)
+    let portfolio = props.portfolios.find(portfolio => portfolio.name === props.match.params.portfolioName)
 
 
     const handleDelete =(portfolioId)=>{
@@ -18,6 +21,7 @@ const Portfolio = (props) =>{
 
     return(
         <div>
+
             {portfolio? <h2>Portfolio {portfolio.name} </h2>: console.log("....requesting")}
             {portfolio? <StocksContainer portfolio={portfolio}/> : console.log("....requesting")}
             {portfolio? <TradesContainer portfolio={portfolio}/> : console.log("....requesting")}

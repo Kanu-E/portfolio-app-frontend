@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 // import {fetchPortfolios} from './actions/fetchPortfolios'
 import PortfolioContainer from './containers/portfolioContainer'
+import StocksContainer from './containers/stocksContainer'
 import './App.css';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
       <div>
         App
         <PortfolioContainer/>
+        {/* <StocksContainer/> */}
       </div>
     )
   }

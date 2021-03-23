@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router-dom'
 import Stocks from '../components/stocks'
-import Stock   from '../components/showStocks'
+import Stock   from '../components/stocks'
 
 
 

@@ -5,6 +5,7 @@ import PortfolioInput   from '../components/portfolioInput'
 import {connect} from 'react-redux'
 import {fetchPortfolios} from '../actions/fetchPortfolios'
 import {Route, Switch} from 'react-router-dom'
+import Stock   from '../components/stock'
 
 
 class PortfolioContainer extends  Component{
@@ -15,15 +16,15 @@ class PortfolioContainer extends  Component{
     render() {
         // console.log(this.props.portfolios)
         return (
-            <div>
+            <div>         
                 <Switch>
-                    <Route path='/portfolios/new' component={PortfolioInput}/>
-                    <Route path='/portfolios/:id'  render={(routerprops) =><Portfolio  {...routerprops} portfolios={this.props.portfolios}/>}/>
+                    <Route exact path='/portfolios/new' component={PortfolioInput}/>
+                    <Route exact path='/portfolios/:portfolioName'  render={(routerprops) =><Portfolio  {...routerprops} portfolios={this.props.portfolios}/>}/>
+                    <Route  path='/portfolios/:portfolioName/stocks/:ticker'  render={(routerprops) =><Stock {...routerprops} stocks={this.props.stocks} portfolios={this.props.portfolios}
+                    />}/>
                     <Route exact path='/portfolios'  render={(routerprops) =><Portfolios {...routerprops} portfolios={this.props.portfolios}/>}/>
-                </Switch>
-
                 {/* <PortfolioInput/> */}
-                
+                </Switch>                
             </div>
         )
     }
@@ -31,7 +32,8 @@ class PortfolioContainer extends  Component{
 
 const mapStateToProps = state =>{
     return{
-        portfolios: state.portfolios
+        portfolios: state.portfolios,
+        stocks: [{ticker: "AMZN", id: 1, price:890}, {ticker:"AAPL", id:2, price:890}, {ticker:"TSLA", id:3, price:890}]
     }
 }
 

@@ -2,7 +2,7 @@ import React, { Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchStockData} from '../actions/fetchStocks'
-import {findQuantity, formatter, fetchStockPrice} from './formatter'
+import {findQuantity, formatter} from './formatter'
 import {iex} from '../config/iex'
 
 class StockRow extends Component {
@@ -35,11 +35,12 @@ class StockRow extends Component {
         // this.props.fetchStockData(this.props.stock.ticker)
         return (
             <tr>
-                <td><Link to={`/stocks/${this.props.stock.id}`}>{this.props.stock.ticker}</Link></td>
+                <td><Link to={`/portfolios/${this.props.portfolio.name}/stocks/${this.props.stock.ticker}`}>{this.props.stock.ticker}</Link></td>
                 <td>{this.props.stock.price}</td> 
                 <td>{quantity}</td> 
                 <td>{isNaN(totalPriceInPence)? '...requesting': formatter.format(totalPriceInPence/100)}</td> 
             </tr>
+            
         )
     }
 }
