@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-// import {fetchPortfolios} from './actions/fetchPortfolios'
 import PortfolioContainer from './containers/portfolioContainer'
-import './App.css';
+import NavBar from './components/navBar';
+
 
 class App extends Component {
 
@@ -15,9 +15,9 @@ class App extends Component {
 
     return (
       <div>
-        App
+        <NavBar/>
         <PortfolioContainer/>
-        {/* <StocksContainer/> */}
+        
       </div>
     )
   }
