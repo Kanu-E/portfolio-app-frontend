@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PortfolioContainer from './containers/portfolioContainer'
 import NavBar from './components/navBar';
+import './App.css';
 
 
 class App extends Component {
@@ -15,9 +16,11 @@ class App extends Component {
 
     return (
       <div>
+      <h1 className="App-header">Portfolio Manager</h1>
+      <div className="App">
         <NavBar/>
-        <PortfolioContainer/>
-        
+        <PortfolioContainer/>       
+      </div>
       </div>
     )
   }

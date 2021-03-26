@@ -7,10 +7,9 @@ class TradesContainer  extends  Component{
             const trades=this.props.portfolio.trades
             const portfolio=this.props.portfolio
         return (
-            <div>               
-                    {/* <Route path='/portfolios/:id/trades/new' component={TradeInput}/>
-                    <Route path='/portfolios/:id/trades'  render={(routerprops) =><Trades  {...routerprops} trades={trades}/>}/>            */}
-                <Trades trades={trades} portfolio={portfolio}/>
+            <div> 
+                {trades.slice(trades.length-3, trades.length).map (trade=>               
+                    <Trades trade={trade} portfolio={portfolio}/>)}
             </div>
         )
     }

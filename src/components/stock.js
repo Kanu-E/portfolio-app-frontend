@@ -1,8 +1,9 @@
 import React, { Component}from 'react'
-import {alpha, iex} from '../config/iex'
+import {alpha, iex} from '../config/apis'
 import Plot from 'react-plotly.js'
 import {formatter, getAveragePrice, findQuantity} from './formatter'
-
+import TradeInput from './tradeInput'
+import Trades from './trades'
 
 
 
@@ -14,8 +15,6 @@ class Stock extends Component {
             overview:'',
             stockPrice:''
         }
-
-
 
     componentDidMount() {
        this.fetchStockData()
@@ -57,24 +56,28 @@ class Stock extends Component {
 
     render() {
 
-        let stock = this.props.stocks.find(stock => stock.ticker === this.props.match.params.ticker)
+        
         let portfolio = this.props.portfolios.find(portfolio => portfolio.name === this.props.match.params.portfolioName)
+        let stock = this.props.match.params.ticker
         let averagePrice;
         let quantityOwned;
         let cashBalance
         let currentPrice = formatter.format(this.state.stockPrice)
+        let noPosition = `You dont have any positions i ${stock}`
+        let trades;
         if (portfolio && stock){
-            averagePrice=getAveragePrice(stock.ticker, portfolio.trades);
-            quantityOwned=findQuantity(stock.ticker, portfolio.trades)
+            averagePrice=getAveragePrice(stock, portfolio.trades);
+            quantityOwned=findQuantity(stock, portfolio.trades)
             cashBalance = formatter.format(portfolio.cash_balance)
+            trades = portfolio.trades.filter(trade => trade.stock_ticker === stock)
+
         }
-
-
+        console.log(trades)
         let CompanyName = this.state.overview.Name
         return(
             <div>
-                
-                <h2> {stock.ticker} </h2>
+
+                <h2> {stock} </h2>
                 <h3>{CompanyName}</h3>
                 <Plot
                     data={[
@@ -88,24 +91,32 @@ class Stock extends Component {
                     ]}
                     layout={{width: 680, height:400, title: this.props.match.params.ticker}}
                 />
-                <p>Buying Power for {stock.ticker} {cashBalance}</p>
+                <TradeInput/>
                 <div>
-                    <div>
-                        Your Position
+                <div>
+                <p>Buying Power for {stock} {cashBalance}</p>
+                 Your Position
                     </div>
-                    <div>
-                        <div>
-                            Quantity owned: {quantityOwned}
-                        </div>
-                        <div>
-                           Average Price: {averagePrice}
-                        </div>
-                        <div>
-                           Current Price: {currentPrice}
-                        </div>
-                    </div>
+                    <table>
+                        <thead className="table mt-5">
+                            <tr>
+                                <th> Quantity owned </th>
+                                <th>  Average Price </th>
+                                <th> Current Price </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{quantityOwned }</td> 
+                                <td>{averagePrice }</td> 
+                                <td>{currentPrice}</td>  
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>History</h3>
+                    {trades && trades.slice(trades.length-3, trades.length).map (trade=>               
+                    <Trades trade={trade} portfolio={portfolio} quantityOwned={quantityOwned} stock={stock}/>)}
                 </div>
-
             </div>
         )
     }

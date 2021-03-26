@@ -4,7 +4,9 @@ import {addTrade} from '../actions/addTrade'
 
 class TradeInput  extends  Component{
     state = {
-        quantity:""
+        quantity:"", 
+        trade:"Buy",
+        on: false
     }
 
     handleChange = (event) => {
@@ -13,24 +15,47 @@ class TradeInput  extends  Component{
         })
     }
 
+    handleTrade=()=>{
+        this.setState({
+            on: true
+        })
+    }
+
+
     handleSubmit = (event) => {
         event.preventDefault()
         // console.log(this.state, this.props.portfolio.id, this.props.trade.stock_ticker)
-        this.props.addTrade(this.state, this.props.portfolio.id, this.props.trade)
+        // this.props.addTrade(this.state, this.props.portfolio.id, this.props.trade)
         this.setState({
-        quantity:""})
+        quantity:""
+        })
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>                   
-                    <label>
-                        Quantity                
-                    </label>
-                    <input type="text" onChange={this.handleChange} value={this.state.quantity} name="quantity"/>
-                    <input type="submit"/> 
-                </form>
+                {this.state.on &&(            
+                    <form onSubmit={this.handleSubmit}>                   
+                        <label>
+                            Quantity                
+                        </label>
+                        <input type="text" onChange={this.handleChange} value={this.state.quantity} name="quantity"/>
+                        <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="#home">Home</a>
+                            <a href="#about">About</a>
+                            <a href="#contact">Contact</a>
+                        </div>
+                        </div>
+                        <input type="submit" value={this.state.trade}/> 
+                    </form>)
+                }
+                 {!this.state.on &&( 
+                <div>
+                    <button onClick={this.handleTrade}> Trade </button> 
+                </div>)
+            }
             </div>
         )
     }

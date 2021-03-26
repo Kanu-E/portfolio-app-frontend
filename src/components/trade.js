@@ -10,7 +10,8 @@ class Trades  extends  Component{
 
     render() {
         
-        let portfolio = this.props.portfolios.find(portfolio => portfolio.name === this.props.match.params.portfolioName)  
+        let portfolio = this.props.portfolios.find(portfolio => portfolio.name === this.props.match.params.portfolioName) 
+        let portfolioName = this.props.match.params.portfolioName
         let trade;
         let unixDate
         let fullDate;
@@ -23,15 +24,18 @@ class Trades  extends  Component{
 
         if (portfolio ){
             trade = portfolio.trades.find(trade => parseInt(trade.id) === parseInt(this.props.match.params.tradeId))
-            stockTicker = trade.stock_ticker
-            name = trade.name
-            quantity = trade.quantity
-            type = trade.trade_type
-            unixDate = Date.parse(trade.created_at)
-            fullDate = new Date(unixDate)
-            date = fullDate.toLocaleDateString("en-US")
-            time = fullDate.toLocaleTimeString("en-US")
-            console.log(date)
+                if (trade) {
+                    stockTicker = trade.stock_ticker
+                    name = trade.name
+                    quantity = trade.quantity
+                    type = trade.trade_type
+                    portfolioName = portfolio.name
+                    unixDate = Date.parse(trade.created_at)
+                    fullDate = new Date(unixDate)
+                    date = fullDate.toLocaleDateString("en-US")
+                    time = fullDate.toLocaleTimeString("en-US")
+                    console.log(date)
+                }
             }else{
                 console.log("portfolio")
         }
@@ -39,13 +43,13 @@ class Trades  extends  Component{
     return (
 
         <div>
-            <div>{stockTicker}</div>
+            <div><Link to={`/portfolios/${portfolioName}/stocks/${stockTicker}`} exact >{stockTicker}</Link></div>
             <div>{name}</div>
             <div>{quantity}</div>
             <div>{type}</div>
             <div>{date}</div>
             <div>{time}</div>
-            <Link to={`/portfolios/${portfolio.name}`} exact >back</Link>
+            <Link to={`/portfolios/${portfolioName}`} exact >back</Link>
         </div>
     
 

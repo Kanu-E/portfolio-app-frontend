@@ -47,6 +47,14 @@
  
     }
 
+    export const getDateAndTime = (inputDate,)=>{
+        let unixDate = Date.parse(inputDate)
+        let fullDate = new Date(unixDate)
+        let date = fullDate.toLocaleDateString("en-US")
+        let time = fullDate.toLocaleTimeString("en-US")
+        return{date: date, time: time}
+    }
+
 
 
 

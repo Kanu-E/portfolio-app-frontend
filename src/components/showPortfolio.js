@@ -4,22 +4,16 @@ import PortfolioEdit from '../components/portfolioEdit'
 import {deletePortfolio} from '../actions/deletePortfolio'
 import StocksContainer from '../containers/stocksContainer'
 import {connect} from 'react-redux'
-
-
+import '../App.css'
 
 const Portfolio = (props) =>{
 
-    console.log(props.match.params)
-   
+    console.log(props.match.params)  
     let portfolio = props.portfolios.find(portfolio => portfolio.name === props.match.params.portfolioName)
-
-
     const handleDelete =(portfolioId)=>{
         props.deletePortfolio(portfolioId)
         props.history.push('/Portfolios')  
     }
-
-     
 
     return(
         <div>
@@ -27,7 +21,9 @@ const Portfolio = (props) =>{
             {portfolio? <StocksContainer portfolio={portfolio}/> : console.log("....requesting")}
             {portfolio? <PortfolioEdit portfolio={portfolio}/> : console.log("....requesting")}
             <button onClick={() => handleDelete(portfolio.id)}>Delete Portfolio</button>
-            {portfolio? <TradesContainer portfolio={portfolio}/> : console.log("....requesting")}
+            <div className="trades">
+                {portfolio? <TradesContainer portfolio={portfolio}/> : console.log("....requesting")}
+            </div>
         </div>
     )
 }

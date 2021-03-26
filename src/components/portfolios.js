@@ -2,18 +2,16 @@ import React  from 'react'
 import {Link} from 'react-router-dom'
 import {formatter} from './formatter'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import NavBar from '../components/navBar';
+
 
 
 
 const Portfolios  =(props) =>{
-
-
-       
-
-    return (
-        
-        <div className="container">
-           
+    return (        
+        <div className="container">     
+            <NavBar/>
+    
             <table className="table mt-5">
                 <thead>
                     <tr>
@@ -36,6 +34,4 @@ const Portfolios  =(props) =>{
         </div>
     )
 }
-
-
 export default Portfolios

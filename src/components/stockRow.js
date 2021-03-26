@@ -1,9 +1,8 @@
 import React, { Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchStockData} from '../actions/fetchStocks'
 import {findQuantity, formatter} from './formatter'
-import {iex} from '../config/iex'
+import {iex} from '../config/apis'
 
 class StockRow extends Component {
 
@@ -49,4 +48,4 @@ const mapStateToProps = (state) =>{
       return  {stockData: state.stockData}
 }
 
-export default connect(mapStateToProps, {fetchStockData})(StockRow)
+export default connect(mapStateToProps, null)(StockRow)

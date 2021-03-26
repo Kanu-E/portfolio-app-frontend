@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {addPortfolio} from '../actions/addPortfolio'
 
+
 class PortfolioInput extends Component{
     state = {
         name:"", 
@@ -23,12 +24,12 @@ class PortfolioInput extends Component{
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit} >
-                    <label>Set Portfolio Name</label>
-                    <input onChange={this.handleChange} type="text" value={this.state.name} name="name" />
+                <form onSubmit={this.handleSubmit} className="form">
+                    <label >Set Portfolio Name: </label>
+                    <input onChange={this.handleChange} type="text" value={this.state.name} name="name" className="input"/>
                     <br>
                     </br>
-                    <label>Set Portfolio Opening Balance</label>
+                    <label>Set Portfolio Opening Balance: </label>
                     <input onChange={this.handleChange}  type="text" value={this.state.cash_balance} name="cash_balance"/>
                     <br>
                     </br>

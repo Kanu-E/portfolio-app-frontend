@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
+import {formatter, getDateAndTime} from './formatter'
+
+
 
 class Trades  extends  Component{
  
@@ -9,19 +12,21 @@ class Trades  extends  Component{
     }
 
     render() {
-        
-        const portfolio=this.props.portfolio
+        console.log(this.props.stock)
+        let portfolio = this.props.portfolio
+        let trade = this.props.trade
+        let type;
+        trade.trade_type === 'open' ? type = 'buy': type = 'sell'
+
+        const date = getDateAndTime(trade.created_at)
 
         return (
-            <div>
-                Trades
-            {this.props.trades.map (trade=>
-            <div key={trade.id} onClick={this.handleClick}>    
-                {trade.stock_ticker}  {trade.trade_type} {trade.quantity} {trade.average_price} 
-                <br></br> 
-                {trade.created_at} <Link to={`./${portfolio.name}/trades/${trade.id}`}> View </Link> 
-                <br></br> 
-                </div>)}          
+            <div className = "trades">
+                    {trade.stock_ticker} {type} {formatter.format(trade.quantity * trade.average_price)} 
+                    {date.date} {date.time}
+                    {this.props.stock?  <Link exact to={`./trades/${trade.id}`} > View </Link>:<Link exact to={`./${portfolio.name}/trades/${trade.id}`} > View </Link>
+                    }
+               
             </div>
         )
     }
