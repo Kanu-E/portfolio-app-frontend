@@ -42,7 +42,12 @@
         let buysQuantity = buys.reduce(function(a , b){ 
             return a + b.quantity
         }       , 0) 
-        return formatter.format(tradeCost/buysQuantity)
+        if(tradeCost === 0){
+            return "N/A"
+        }
+        else{
+            return formatter.format(tradeCost/buysQuantity)
+        }
     }
 
     export const getDateAndTime = (inputDate)=>{

@@ -5,9 +5,6 @@ import {formatter, getAveragePrice, findQuantity, getDateAndTime} from './format
 import TradeInput from './tradeInput'
 import Trades from './trades'
 
-
-
-
 class Stock extends Component {  
         state = {
             yValues:[],
@@ -51,8 +48,7 @@ class Stock extends Component {
     }
 
     render() {
-
-        
+   
         let portfolio = this.props.portfolios.find(portfolio => portfolio.name === this.props.match.params.portfolioName)
         let stock = this.props.match.params.ticker.toUpperCase()
         let averagePrice;
@@ -117,9 +113,6 @@ class Stock extends Component {
             </div>
         )
     }
-
-
 }
-
 
 export default Stock
