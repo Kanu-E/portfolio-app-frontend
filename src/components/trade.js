@@ -34,7 +34,7 @@ class Trades  extends  Component{
                     fullDate = new Date(unixDate)
                     date = fullDate.toLocaleDateString("en-US")
                     time = fullDate.toLocaleTimeString("en-US")
-                    console.log(date)
+                    // console.log(date)
                 }
             }else{
                 console.log("portfolio")

@@ -5,7 +5,7 @@ import {addTrade} from '../actions/addTrade'
 class TradeInput  extends  Component{
     state = {
         quantity:"", 
-        trade:"Buy",
+        trade:"buy",
         on: false
     }
 
@@ -24,11 +24,9 @@ class TradeInput  extends  Component{
 
     handleSubmit = (event) => {
         event.preventDefault()
-        // console.log(this.state, this.props.portfolio.id, this.props.trade.stock_ticker)
-        // this.props.addTrade(this.state, this.props.portfolio.id, this.props.trade)
-        this.setState({
-        quantity:""
-        })
+        // console.log(this.state, this.props.portfolio.id, this.props.stock)
+        this.props.addTrade(this.state, this.props.portfolio.id)
+        this.props.history.push(`/portfolios/${this.props.portfolio.name}/stocks/${this.props.stock}`)
     }
 
     render() {
@@ -40,14 +38,13 @@ class TradeInput  extends  Component{
                             Quantity                
                         </label>
                         <input type="text" onChange={this.handleChange} value={this.state.quantity} name="quantity"/>
-                        <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                        <div id="myDropdown" class="dropdown-content">
-                            <a href="#home">Home</a>
-                            <a href="#about">About</a>
-                            <a href="#contact">Contact</a>
-                        </div>
-                        </div>
+                        <br></br>
+                        <label for="cars">buy or sell:</label>
+                        <select name="trade" onChange={this.handleChange}>
+                        <option value="buy">buy</option>
+                        <option value="sell">sell</option>
+                        </select>
+                        <br></br>
                         <input type="submit" value={this.state.trade}/> 
                     </form>)
                 }

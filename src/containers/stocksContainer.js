@@ -8,6 +8,7 @@ import Stock   from '../components/stocks'
 
 class StocksContainer extends  Component{
 
+    
 
     render() {
         // console.log(this.props.stocks)
@@ -23,12 +24,8 @@ class StocksContainer extends  Component{
     }
 }
 
-const mapStateToProps = state =>{
-    return{
-        stocks: [{ticker: "AMZN", id: 1, price:890}, {ticker:"AAPL", id:2, price:890}, {ticker:"TSLA", id:3, price:890}]
-    }
-}
 
 
 
-export default connect (mapStateToProps, null)(StocksContainer)
+
+export default StocksContainer

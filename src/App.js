@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import PortfolioContainer from './containers/portfolioContainer'
 import NavBar from './components/navBar';
+import Home from './components/home';
+import {Route} from 'react-router-dom'
 import './App.css';
 
 
 class App extends Component {
 
-  // componentDidMount(){
-  //   fetch('http://localhost:3000/api/v1/portfolios')
-  //   .then(response => response.json())
-  //   .then (data => console.log(data))
-  // }
   render() {
 
     return (
@@ -19,6 +15,7 @@ class App extends Component {
       <h1 className="App-header">Portfolio Manager</h1>
       <div className="App">
         <NavBar/>
+        <Route exact path='/' render={(routerprops) =><Home />}/>
         <PortfolioContainer/>       
       </div>
       </div>
@@ -26,7 +23,7 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+export default  App
 
 
 

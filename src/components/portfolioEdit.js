@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {editPortfolio} from '../actions/editPortfolio'
+import {Route} from 'react-router-dom'
+
 
 class PortfolioEdit extends Component{
     state = {
@@ -16,7 +18,7 @@ class PortfolioEdit extends Component{
         event.preventDefault()
         let portfolio = {...this.state, id: this.props.portfolio.id}
         this.props.editPortfolio(portfolio)
-        // this.props.history.push('/Portfolios')
+        this.props.history.push(`/Portfolios/${this.state.name}`)
     }
       
     render() {

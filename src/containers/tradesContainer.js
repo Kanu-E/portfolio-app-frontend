@@ -8,8 +8,8 @@ class TradesContainer  extends  Component{
             const portfolio=this.props.portfolio
         return (
             <div> 
-                {trades.slice(trades.length-3, trades.length).map (trade=>               
-                    <Trades trade={trade} portfolio={portfolio}/>)}
+                {trades.slice(trades.length-3).map (trade=>            
+                    <Trades key={trade.id}   trade={trade} portfolio={portfolio}/>)}
             </div>
         )
     }

@@ -42,12 +42,10 @@
         let buysQuantity = buys.reduce(function(a , b){ 
             return a + b.quantity
         }       , 0) 
-     
         return formatter.format(tradeCost/buysQuantity)
- 
     }
 
-    export const getDateAndTime = (inputDate,)=>{
+    export const getDateAndTime = (inputDate)=>{
         let unixDate = Date.parse(inputDate)
         let fullDate = new Date(unixDate)
         let date = fullDate.toLocaleDateString("en-US")
