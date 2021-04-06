@@ -4,6 +4,8 @@ import Plot from 'react-plotly.js'
 import {formatter, getAveragePrice, findQuantity, getDateAndTime} from './formatter'
 import TradeInput from './tradeInput'
 import Trades from './trades'
+import {Link} from 'react-router-dom'
+
 
 class Stock extends Component {  
         state = {
@@ -12,29 +14,31 @@ class Stock extends Component {
             overview:'',
             stockPrice:''
         }
-    componentDidMount() {
+    componentDidMount() {       
        this.fetchStockData(Math.floor(Date.now() / 1000))
     }
     fetchStockData(date){
         let valuesForX = [];
         let valuesForY = []
 
-        fetch(`${iex.baseURL}/api/v1/stock/candle?symbol=${this.props.match.params.ticker.toUpperCase()}&resolution=1&from=${date-120000}&to=${date}&token=c14s26n48v6st2757ktg`)
+        fetch(`${iex.baseURL}/api/v1/stock/candle?symbol=${this.props.match.params.ticker.toUpperCase()}&resolution=1&from=${date-220000}&to=${date}&token=c14s26n48v6st2757ktg`)
             .then(response  => response.json())
             .then(data =>         
             {
-                for (let i = 0; i < data.c.length; i++){
-                    let y = new Date(data.t[i]*1000)
-                    let x = getDateAndTime(y)
-                    valuesForY.push(data.c[i])
-                    valuesForX.push(x.time)
-                }
-                        this.setState(
+                if(data.c){
+                    for (let i = 0; i < data.c.length; i++){
+                        let y = new Date(data.t[i]*1000)
+                        let x = getDateAndTime(y)
+                        valuesForY.push(data.c[i])
+                        valuesForX.push(x.time)
+                    }
+                    this.setState(
                         {xValues: valuesForX,
                         yValues: valuesForY,
                         stockPrice: valuesForY[data.c.length-1]
                         } 
-                 )
+                    )
+                }
             },
         )
 
@@ -55,7 +59,6 @@ class Stock extends Component {
         let quantityOwned;
         let cashBalance
         let currentPrice = formatter.format(this.state.stockPrice)
-        let noPosition = `You dont have any positions in ${stock}`
         let trades;
         if (portfolio && stock){
             averagePrice=getAveragePrice(stock, portfolio.trades);
@@ -66,10 +69,12 @@ class Stock extends Component {
         // if (this.state.yValues[0]){currentPrice = formatter.format(this.state.yValues[81])}
         let CompanyName = this.state.overview.Name
 
-        console.log(this.state.xValues[0])
+        console.log(portfolio)
         return(
             <div>
-                <h2> {stock} </h2>
+               {portfolio && 
+            <Link to={`/portfolios/${portfolio.name}`} exact >Back</Link>  } 
+                 <h2> {stock} </h2>
                 <h3>{CompanyName}</h3>
                 <Plot
                     data={[
@@ -83,7 +88,8 @@ class Stock extends Component {
                     ]}
                     layout={{width: 680, height:400, title: this.props.match.params.ticker}}
                 />
-                <TradeInput  portfolio={portfolio}  stock={stock}/>
+
+                <TradeInput  portfolio={portfolio}  currentPrice={currentPrice} stock={stock} history={this.props.history}/>
                 <div>
                 <div>
                 <p>Buying Power for {stock} {cashBalance}</p>

@@ -5,7 +5,6 @@ import {deletePortfolio} from '../actions/deletePortfolio'
 import StocksContainer from '../containers/stocksContainer'
 import {getPortfolio} from '../actions/getPortfolio'
 import SearchBar   from '../components/searchBar'
-
 import {connect} from 'react-redux'
 import '../App.css'
 

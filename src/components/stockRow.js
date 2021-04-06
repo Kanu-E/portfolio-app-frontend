@@ -16,8 +16,7 @@ class StockRow extends Component {
 
       componentDidMount() {
         const thisBoundedIncrementer = this.getStockData.bind(this);
-        setInterval(thisBoundedIncrementer, 1000);
-       
+        setInterval(thisBoundedIncrementer, 10000);     
       }
     
     render() {

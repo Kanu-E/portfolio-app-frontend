@@ -16,7 +16,7 @@ class PortfolioInput extends Component{
 
     handleSubmit = (event) => {
         event.preventDefault()
-        // this.props.addPortfolio(this.state)
+        this.props.addPortfolio(this.state)
         this.props.history.push('/Portfolios')
     }
       

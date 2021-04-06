@@ -1,13 +1,27 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addTrade} from '../actions/addTrade'
+import {iex} from '../config/apis'
+
 
 class TradeInput  extends  Component{
     state = {
         quantity:"", 
         trade:"buy",
+        stockPrice:"",
         on: false
     }
+
+    getStockData() {  
+        fetch(`${iex.baseURL}/api/v1/quote?symbol=${this.props.stock}&token=c14s26n48v6st2757ktg`)
+            .then(response => response.json())
+            .then(stockPrice =>  this.setState({ stockPrice: stockPrice.c}))
+     }
+
+      componentDidMount() {
+         this.getStockData();
+         
+      }
 
     handleChange = (event) => {
         this.setState({
@@ -21,12 +35,11 @@ class TradeInput  extends  Component{
         })
     }
 
-
     handleSubmit = (event) => {
         event.preventDefault()
-        // console.log(this.state, this.props.portfolio.id, this.props.stock)
-        this.props.addTrade(this.state, this.props.portfolio.id)
-        this.props.history.push(`/portfolios/${this.props.portfolio.name}/stocks/${this.props.stock}`)
+        console.log(this.state, this.props.portfolio, this.props.stock)
+        this.props.addTrade(this.state, this.props.portfolio.id, this.props.stock)
+        this.props.history.push(`/portfolios/${this.props.portfolio.name}`)
     }
 
     render() {

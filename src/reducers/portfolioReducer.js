@@ -19,7 +19,8 @@ function portfoliosReducer(state =[], action) {
             portfolios = state.filter(portfolio => portfolio.id !== action.payload.id)   
             return  portfolios.concat(action.payload)
         case 'ADD_TRADE': 
-            return  state.concat(action.payload)
+            portfolios = state.filter(portfolio => portfolio.id !== action.payload.id)   
+            return  portfolios.concat(action.payload)
         case 'DELETE_PORTFOLIO': 
             return state.filter(portfolio => portfolio.id !== action.payload)
         default:

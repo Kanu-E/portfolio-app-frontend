@@ -22,8 +22,7 @@ class Trades  extends  Component{
 
         return (
             <div className = "trades">
-                    {trade.stock_ticker} {type} {formatter.format(trade.quantity * trade.average_price)} 
-                    {date.date} {date.time}
+                    {trade.stock_ticker} {type} {formatter.format(trade.quantity * trade.average_price)} {date.date} 
                     {this.props.stock?  <Link to={`./trades/${trade.id}`} > View </Link>:<Link to={`./${portfolio.name}/trades/${trade.id}`} > View </Link>
                     }             
             </div>
